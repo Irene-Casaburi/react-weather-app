@@ -1,10 +1,15 @@
 import React from "react";
 import "./App.css";
+import CurrentWeather from "./CurrentWeather";
 
 export default function App() {
   return (
     <div className="App">
-      <div class="container">Hello World</div>
+      <div className="container">
+        <div className="row">
+          <CurrentWeather />
+        </div>
+      </div>
     </div>
   );
 }
