@@ -1,4 +1,5 @@
 import React from "react";
+import FormattedDate from "./FormattedDate";
 
 export default function CurrentWeatherDetails(props) {
   return (
@@ -10,7 +11,9 @@ export default function CurrentWeatherDetails(props) {
         <span className="units">°C °F </span>
       </h2>
       <h1>{props.data.city}</h1>
-      <p>Last updated: {}</p>
+      <p>
+        <FormattedDate date={props.data.date} />
+      </p>
       <div>
         <img src={props.data.icon} alt={props.data.conditions}></img>
       </div>

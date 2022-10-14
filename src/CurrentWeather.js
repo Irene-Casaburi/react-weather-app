@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
@@ -9,6 +9,10 @@ import "./CurrentWeather.css";
 export default function CurrentWeather(props) {
   const [city, setCity] = useState(props.defaultCity);
   const [weatherData, setWeatherData] = useState({ ready: false });
+
+  useEffect(() => {
+    searchCity();
+  }, []);
 
   function handleCityChange(event) {
     setCity(event.target.value);
@@ -28,6 +32,7 @@ export default function CurrentWeather(props) {
       icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       conditions: response.data.weather[0].main,
       city: response.data.name,
+      date: new Date(response.data.dt * 1000),
     });
   }
 
@@ -63,8 +68,6 @@ export default function CurrentWeather(props) {
       </div>
     );
   } else {
-    searchCity();
-
     return "Loading...";
   }
 }
