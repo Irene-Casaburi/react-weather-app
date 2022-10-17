@@ -3,10 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
-import CurrentWeatherDetails from "./CurrentWeatherDetails";
-import "./CurrentWeather.css";
+import WeatherDetails from "./WeatherDetails";
+import WeatherForecast from "./WeatherForecast";
+import "./Weather.css";
 
-export default function CurrentWeather(props) {
+export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
   const [weatherData, setWeatherData] = useState({ ready: false });
 
@@ -33,6 +34,7 @@ export default function CurrentWeather(props) {
       conditions: response.data.weather[0].main,
       city: response.data.name,
       date: new Date(response.data.dt * 1000),
+      coordinates: response.data.coord,
     });
   }
 
@@ -44,7 +46,7 @@ export default function CurrentWeather(props) {
 
   if (weatherData.ready) {
     return (
-      <div className="CurrentWeather">
+      <div className="Weather">
         <div className="col-8">
           <div className="today-weather-section">
             <form className="search-form" onSubmit={handleSubmit}>
@@ -62,9 +64,10 @@ export default function CurrentWeather(props) {
                 </button>
               </div>
             </form>
-            <CurrentWeatherDetails data={weatherData} />
+            <WeatherDetails data={weatherData} />
           </div>
         </div>
+        <WeatherForecast coordinates={weatherData.coordinates} />
       </div>
     );
   } else {
