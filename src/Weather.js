@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
+import { RotatingLines } from "react-loader-spinner";
 import WeatherDetails from "./WeatherDetails";
 import WeatherForecast from "./WeatherForecast";
 import "./Weather.css";
@@ -44,6 +45,19 @@ export default function Weather(props) {
     axios.get(apiUrl).then(handleResponse);
   }
 
+  function getCurrentCoords(position) {
+    let longitude = position.coords.longitude;
+    let latitude = position.coords.latitude;
+    let apiKey = "72b484ab5570dfdd776f4960e244a513";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+  }
+
+  function getCurrentLocation(event) {
+    event.preventDefault();
+    navigator.geolocation.getCurrentPosition(getCurrentCoords);
+  }
+
   if (weatherData.ready) {
     return (
       <div className="Weather">
@@ -59,7 +73,11 @@ export default function Weather(props) {
                   onChange={handleCityChange}
                 />
                 <input type="submit" className="btn btn-dark" value="Search" />
-                <button type="button" className="btn btn-danger">
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={getCurrentLocation}
+                >
                   <FontAwesomeIcon icon={faLocationDot} />
                 </button>
               </div>
@@ -71,6 +89,14 @@ export default function Weather(props) {
       </div>
     );
   } else {
-    return "Loading...";
+    return (
+      <RotatingLines
+        strokeColor="white"
+        strokeWidth="5"
+        animationDuration="0.75"
+        width="96"
+        visible={true}
+      />
+    );
   }
 }
