@@ -1,0 +1,86 @@
+h1,
+h2,
+p,
+h3,
+i {
+  color: white;
+}
+
+.city {
+  font-weight: 600;
+  font-size: 40px;
+  margin-bottom: 0;
+}
+
+.temperature {
+  margin-bottom: 0;
+}
+
+.date {
+  font-size: 13px;
+  margin-bottom: 0;
+}
+
+.conditions {
+  font-weight: 600;
+  margin-bottom: 0;
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.humidity-wind {
+  margin-bottom: 0;
+}
+
+.details {
+  font-size: 13px;
+  color: white;
+  margin-bottom: 0;
+}
+
+.temperature {
+  font-size: 80px;
+  font-weight: 800;
+}
+
+.weather-temperature img {
+  margin-right: 5px;
+  height: 64px;
+  width: 64px;
+}
+
+.weather-temperature .units {
+  position: relative;
+  top: -28px;
+  font-size: 40px;
+  font-weight: 800;
+}
+
+.today-weather-subsection {
+  margin-left: 25px;
+}
+
+@media (max-width: 1199px) {
+  .city {
+    font-size: 32px;
+  }
+
+  .temperature {
+    font-size: 64px;
+  }
+
+  .conditions {
+    font-size: 16px;
+  }
+
+  .date,
+  .humidity-wind {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 991px) {
+  .WeatherDetails {
+    margin-top: 250px;
+  }
+}

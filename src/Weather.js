@@ -6,6 +6,7 @@ import axios from "axios";
 import { RotatingLines } from "react-loader-spinner";
 import WeatherDetails from "./WeatherDetails";
 import WeatherForecast from "./WeatherForecast";
+import BackgroundImage from "./BackgroundImage";
 import "./Weather.css";
 
 export default function Weather(props) {
@@ -61,31 +62,41 @@ export default function Weather(props) {
   if (weatherData.ready) {
     return (
       <div className="Weather">
-        <div className="col-8">
-          <div className="today-weather-section">
-            <form className="search-form" onSubmit={handleSubmit}>
-              <div className="input-group">
-                <input
-                  className="form-control"
-                  type="search"
-                  placeholder="Search for a city..."
-                  autoComplete="off"
-                  onChange={handleCityChange}
-                />
-                <input type="submit" className="btn btn-dark" value="Search" />
-                <button
-                  type="button"
-                  className="btn btn-danger"
-                  onClick={getCurrentLocation}
-                >
-                  <FontAwesomeIcon icon={faLocationDot} />
-                </button>
+        <BackgroundImage icon={weatherData.icon}>
+          <div className="row">
+            <BackgroundImage icon={weatherData.icon} mobile>
+              <div className="today-weather-section">
+                <form className="search-form" onSubmit={handleSubmit}>
+                  <div className="input-group">
+                    <input
+                      className="form-control"
+                      type="search"
+                      placeholder="Search for a city..."
+                      autoComplete="off"
+                      onChange={handleCityChange}
+                    />
+                    <input
+                      type="submit"
+                      className="btn btn-dark"
+                      value="Search"
+                    />
+                    <button
+                      type="button"
+                      className="btn btn-danger"
+                      onClick={getCurrentLocation}
+                    >
+                      <FontAwesomeIcon icon={faLocationDot} />
+                    </button>
+                  </div>
+                </form>
+                <WeatherDetails data={weatherData} />
               </div>
-            </form>
-            <WeatherDetails data={weatherData} />
+            </BackgroundImage>
+            <div className="col-md-12 col-lg-4">
+              <WeatherForecast coordinates={weatherData.coordinates} />
+            </div>
           </div>
-        </div>
-        <WeatherForecast coordinates={weatherData.coordinates} />
+        </BackgroundImage>
       </div>
     );
   } else {
@@ -94,7 +105,7 @@ export default function Weather(props) {
         strokeColor="white"
         strokeWidth="5"
         animationDuration="0.75"
-        width="96"
+        width="55"
         visible={true}
       />
     );
