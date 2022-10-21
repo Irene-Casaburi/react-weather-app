@@ -8,6 +8,24 @@
 
 .search-form {
   max-width: 500px;
+  flex: 1;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.unit-button {
+  margin-left: 40px;
+}
+
+@media (max-width: 1199px) {
+  input {
+    font-size: 15px !important;
+  }
+  .unit-button span {
+    font-size: 15px;
+  }
 }
 
 @media (max-width: 991px) {
@@ -19,5 +37,28 @@
 @media (min-width: 992px) {
   .mobile-bg {
     background: none !important;
+  }
+}
+
+@media (max-width: 575px) {
+  .today-weather-section {
+    padding: 30px;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .unit-button {
+    margin-top: 10px;
+    margin-left: 0px;
+  }
+
+  input {
+    font-size: 13px !important;
+    padding: 8px !important;
+  }
+  .unit-button span {
+    font-size: 13px;
   }
 }

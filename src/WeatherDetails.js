@@ -7,15 +7,18 @@ import "./WeatherDetails.css";
 export default function WeatherDetails(props) {
   return (
     <div className="WeatherDetails">
-      <div className="d-flex align-items-center">
+      <div className="d-flex align-items-center details-section">
         <div className="d-flex weather-temperature">
           <div>
             <h2 className="temperature">
-              <Temperature celsiusTemperature={props.data.temperature} />
+              <Temperature
+                celsiusTemperature={props.data.temperature}
+                unit={props.unit}
+              />
             </h2>
           </div>
         </div>
-        <div className="d-flex align-items-end">
+        <div className="d-flex conditions-section">
           <div className="today-weather-subsection">
             <h1 className="city">{props.data.city}</h1>
             <p className="date">

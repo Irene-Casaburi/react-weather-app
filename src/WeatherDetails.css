@@ -6,6 +6,10 @@ i {
   color: white;
 }
 
+.conditions-section {
+  align-items: flex-end;
+}
+
 .city {
   font-weight: 600;
   font-size: 40px;
@@ -62,25 +66,67 @@ i {
 
 @media (max-width: 1199px) {
   .city {
-    font-size: 32px;
+    font-size: 34px;
   }
 
   .temperature {
-    font-size: 64px;
+    font-size: 68px;
   }
 
   .conditions {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .date,
   .humidity-wind {
-    font-size: 11px;
+    font-size: 12px;
+  }
+
+  .weather-temperature .units {
+    top: -20px;
   }
 }
 
 @media (max-width: 991px) {
   .WeatherDetails {
     margin-top: 250px;
+  }
+}
+
+@media (max-width: 767px) {
+  .WeatherDetails {
+    margin: 80px auto 45px;
+  }
+
+  .date {
+    margin-bottom: 30px;
+  }
+
+  .details-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .conditions-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .today-weather-subsection {
+    margin-left: 0px;
+  }
+
+  .conditions {
+    margin-left: 8px;
+  }
+
+  .weather-icon-section {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 575px) {
+  .WeatherDetails {
+    margin: 35px auto 45px;
   }
 }

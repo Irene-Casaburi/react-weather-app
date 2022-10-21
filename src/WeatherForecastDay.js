@@ -3,8 +3,14 @@ import WeatherIcon from "./WeatherIcon";
 import "./WeatherForecastDay.css";
 
 export default function WeatherForecastDay(props) {
-  let maxTemperature = Math.round(props.data.temp.max);
-  let minTemperature = Math.round(props.data.temp.min);
+  let maxCelsiusTemperature = Math.round(props.data.temp.max);
+  let minCelsiusTemperature = Math.round(props.data.temp.min);
+  let maxFahrenheitTemperature = Math.round(
+    (maxCelsiusTemperature * 9) / 5 + 32
+  );
+  let minFahrenheitTemperature = Math.round(
+    (minCelsiusTemperature * 9) / 5 + 32
+  );
 
   let daysOfTheWeek = [
     "Sunday",
@@ -27,10 +33,14 @@ export default function WeatherForecastDay(props) {
         </div>
         <div className="weather-forecast-temperatures">
           <div className="weather-forecast-temperature-max">
-            {maxTemperature}°C
+            {props.unit === "celsius"
+              ? `${maxCelsiusTemperature}°C`
+              : `${maxFahrenheitTemperature}°F`}
           </div>
           <div className="weather-forecast-temperature-min">
-            {minTemperature}°C
+            {props.unit === "celsius"
+              ? `${minCelsiusTemperature}°C`
+              : `${minFahrenheitTemperature}°F`}
           </div>
         </div>
       </div>

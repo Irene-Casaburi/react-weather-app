@@ -24,7 +24,9 @@ export default function BackgroundImage(props) {
 
   return (
     <div
-      className={props.mobile ? "mobile-bg col-md-12 col-lg-8" : "desktop-bg"}
+      className={
+        props.mobile ? "mobile-bg col-md-12 col-lg-8 p-0" : "desktop-bg"
+      }
       style={{
         backgroundImage: `url("https://s3.amazonaws.com/shecodesio-production/uploads/files/${
           backgroundImages[props.icon]

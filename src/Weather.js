@@ -12,6 +12,7 @@ import "./Weather.css";
 export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
   const [weatherData, setWeatherData] = useState({ ready: false });
+  const [unit, setUnit] = useState("celsius");
 
   useEffect(() => {
     searchCity();
@@ -59,6 +60,11 @@ export default function Weather(props) {
     navigator.geolocation.getCurrentPosition(getCurrentCoords);
   }
 
+  function changeUnit(event) {
+    event.preventDefault();
+    setUnit(unit === "celsius" ? "fahrenheit" : "celsius");
+  }
+
   if (weatherData.ready) {
     return (
       <div className="Weather">
@@ -66,34 +72,56 @@ export default function Weather(props) {
           <div className="row">
             <BackgroundImage icon={weatherData.icon} mobile>
               <div className="today-weather-section">
-                <form className="search-form" onSubmit={handleSubmit}>
-                  <div className="input-group">
-                    <input
-                      className="form-control"
-                      type="search"
-                      placeholder="Search for a city..."
-                      autoComplete="off"
-                      onChange={handleCityChange}
-                    />
-                    <input
-                      type="submit"
-                      className="btn btn-dark"
-                      value="Search"
-                    />
+                <div className="d-flex form-row">
+                  <form className="search-form" onSubmit={handleSubmit}>
+                    <div className="input-group">
+                      <input
+                        className="form-control"
+                        type="search"
+                        placeholder="Search for a city..."
+                        autoComplete="off"
+                        onChange={handleCityChange}
+                      />
+                      <input
+                        type="submit"
+                        className="btn btn-dark"
+                        value="Search"
+                      />
+                      <button
+                        type="button"
+                        className="btn btn-danger"
+                        onClick={getCurrentLocation}
+                      >
+                        <FontAwesomeIcon icon={faLocationDot} />
+                      </button>
+                    </div>
+                  </form>
+                  <div className="button-container">
                     <button
                       type="button"
-                      className="btn btn-danger"
-                      onClick={getCurrentLocation}
+                      className="btn btn-warning unit-button"
+                      onClick={changeUnit}
                     >
-                      <FontAwesomeIcon icon={faLocationDot} />
+                      <span className={unit === "celsius" ? "bold" : ""}>
+                        {" "}
+                        °C{" "}
+                      </span>
+                      |{" "}
+                      <span className={unit === "fahrenheit" ? "bold" : ""}>
+                        {" "}
+                        °F{" "}
+                      </span>
                     </button>
                   </div>
-                </form>
-                <WeatherDetails data={weatherData} />
+                </div>
+                <WeatherDetails data={weatherData} unit={unit} />
               </div>
             </BackgroundImage>
-            <div className="col-md-12 col-lg-4">
-              <WeatherForecast coordinates={weatherData.coordinates} />
+            <div className="col-md-12 col-lg-4 p-0">
+              <WeatherForecast
+                coordinates={weatherData.coordinates}
+                unit={unit}
+              />
             </div>
           </div>
         </BackgroundImage>
