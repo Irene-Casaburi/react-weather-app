@@ -1,6 +1,8 @@
 import React from "react";
 import ReactAnimatedWeather from "react-animated-weather";
 
+import "./WeatherIcon.css";
+
 export default function WeatherIcon(props) {
   const iconMapping = {
     "01d": "CLEAR_DAY",
@@ -24,11 +26,13 @@ export default function WeatherIcon(props) {
   };
 
   return (
-    <ReactAnimatedWeather
-      icon={iconMapping[props.icon]}
-      color="white"
-      size={50}
-      animate={true}
-    />
+    <div className="weather-icon-wrapper">
+      <ReactAnimatedWeather
+        icon={iconMapping[props.icon]}
+        color="white"
+        size={80}
+        animate={true}
+      />
+    </div>
   );
 }

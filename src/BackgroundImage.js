@@ -32,6 +32,7 @@ export default function BackgroundImage(props) {
           backgroundImages[props.icon]
         }")`,
         backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       {props.children}
