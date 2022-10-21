@@ -129,13 +129,15 @@ export default function Weather(props) {
     );
   } else {
     return (
-      <RotatingLines
-        strokeColor="white"
-        strokeWidth="5"
-        animationDuration="0.75"
-        width="55"
-        visible={true}
-      />
+      <div className="loading-container">
+        <RotatingLines
+          strokeColor="white"
+          strokeWidth="5"
+          animationDuration="0.75"
+          width="55"
+          visible={true}
+        />
+      </div>
     );
   }
 }

@@ -4,6 +4,14 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-height: 580px;
+}
+
+.loading-container {
+  min-height: 580px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .search-form {
@@ -26,11 +34,18 @@
   .unit-button span {
     font-size: 15px;
   }
+
+  .today-weather-section {
+    min-height: 550px;
+  }
 }
 
 @media (max-width: 991px) {
   .desktop-bg {
     background: none !important;
+  }
+  .today-weather-section {
+    min-height: 0px;
   }
 }
 
